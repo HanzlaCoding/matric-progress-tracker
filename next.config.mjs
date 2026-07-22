@@ -12,7 +12,7 @@ const nextConfig = {
   webpack: {
     enabled: true,
   },
-  turbopack: {},
+  turbopack: {}
 };
 
 const runtimeCaching = [
