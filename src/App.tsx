@@ -1,5 +1,3 @@
-'use client'
-
 import { useState, useCallback, useEffect } from 'react'
 import Header from '@/components/header'
 import SubjectSelector from '@/components/subject-selector'
@@ -16,13 +14,12 @@ interface StudentProfile {
   subject: string
 }
 
-export default function Home() {
+export default function App() {
   const [selectedSubject, setSelectedSubject] = useState('Physics')
   const [studentProfile, setStudentProfile] = useState<StudentProfile | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Load student profile from localStorage
     const saved = localStorage.getItem('studentProfile')
     if (saved) {
       const profile = JSON.parse(saved)
@@ -66,9 +63,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* Main Content */}
       <main className="w-full max-w-6xl mx-auto px-4 py-6 md:py-8 md:px-6">
-        {/* Welcome Section */}
         <div className="mb-8">
           <div className="bg-gradient-to-br from-primary/5 via-accent/3 to-transparent rounded-xl p-6 border border-primary/10 shadow-sm">
             <div className="flex items-start gap-3 justify-between">
@@ -99,27 +94,22 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Subject Selector */}
         <div className="mb-6">
           <div className="bg-card rounded-xl p-5 border border-border shadow-sm">
             <SubjectSelector onSelectSubject={handleSubjectChange} defaultSubject="Physics" />
           </div>
         </div>
 
-        {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Left Column - Study Planner */}
           <div className="order-2 lg:order-1">
             <StudyPlanner subject={selectedSubject} />
           </div>
 
-          {/* Right Column - Progress Tracker */}
           <div className="order-1 lg:order-2">
             <ProgressTracker subject={selectedSubject} />
           </div>
         </div>
 
-        {/* Tips Section */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-gradient-to-br from-primary/5 to-primary/2 rounded-xl p-4 border border-primary/10 hover:shadow-md transition-all">
             <h3 className="font-semibold text-foreground mb-2 text-sm">Study Smart</h3>
@@ -141,7 +131,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Footer */}
         <div className="mt-12 pt-6 border-t border-border text-center">
           <p className="text-xs text-muted-foreground">
             MatricPrep AI • Empowering Pakistani students for exam success • March 15, 2027
@@ -149,7 +138,6 @@ export default function Home() {
         </div>
       </main>
 
-      {/* AI Study Assistant Chat */}
       <AIStudyAssistant subject={selectedSubject} studentName={studentProfile.name} />
     </div>
   )
