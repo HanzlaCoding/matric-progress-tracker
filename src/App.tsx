@@ -96,7 +96,7 @@ export default function App() {
 
         <div className="mb-6">
           <div className="bg-card rounded-xl p-5 border border-border shadow-sm">
-            <SubjectSelector onSelectSubject={handleSubjectChange} defaultSubject="Physics" />
+            <SubjectSelector onSelectSubject={handleSubjectChange} selectedSubject={selectedSubject} />
           </div>
         </div>
 
