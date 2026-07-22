@@ -38,6 +38,19 @@ export const metadata: Metadata = {
       },
     ],
   },
+  openGraph: {
+    title: 'MatricPrep AI - Your Matriculation Study Companion',
+    description: 'AI-powered study planning and progress tracking for Matriculation students in Pakistan.',
+    url: 'https://matricprep.ai',
+    siteName: 'MatricPrep AI',
+    locale: 'en_PK',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MatricPrep AI',
+    description: 'AI-powered study planning and progress tracking for Matriculation students in Pakistan.',
+  },
 }
 
 export const viewport: Viewport = {
