@@ -81,6 +81,6 @@ const pwaConfig = withPWA({
   runtimeCaching,
 })(nextConfig);
 
-pwaConfig.turbopack = {};
+// pwaConfig.turbopa = {};
 
 export default pwaConfig;
