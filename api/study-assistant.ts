@@ -1,5 +1,5 @@
 import { generateText } from 'ai'
-import { createOpenAI } from '@ai-sdk/openai'
+import { createGoogleGenerativeAI } from '@ai-sdk/google'
 
 // Vercel Serverless Function Handler
 export default async function handler(req, res) {
@@ -10,9 +10,8 @@ export default async function handler(req, res) {
   try {
     const { message, subject, studentName } = req.body
 
-    const openai = createOpenAI({
-      apiKey: process.env.OPENAI_API_KEY || process.env.AI_GATEWAY_API_KEY,
-      baseURL: process.env.AI_GATEWAY_BASE_URL || undefined,
+    const google = createGoogleGenerativeAI({
+      apiKey: process.env.GEMINI_API_KEY,
     })
 
     const SUBJECT_GUIDES = {
@@ -44,7 +43,7 @@ Key Guidelines:
 Remember: You're helping a Pakistani matriculation student prepare for their board exams in ${subject}.`
 
     const response = await generateText({
-      model: openai('gpt-3.5-turbo'),
+      model: google('gemini-1.5-flash'),
       system: systemPrompt,
       prompt: message,
       temperature: 0.7,
