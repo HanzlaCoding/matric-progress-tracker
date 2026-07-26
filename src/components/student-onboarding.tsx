@@ -6,7 +6,6 @@ import { ChevronRight, BookOpen } from 'lucide-react'
 interface StudentProfile {
   name: string
   board: string
-  city: string
   subject: string
 }
 
@@ -25,31 +24,16 @@ const BOARDS = [
 
 const SUBJECTS = ['Physics', 'Math', 'Chemistry', 'Computer', 'English', 'Urdu']
 
-const MAJOR_CITIES = [
-  'Islamabad',
-  'Rawalpindi',
-  'Lahore',
-  'Faisalabad',
-  'Multan',
-  'Karachi',
-  'Hyderabad',
-  'Peshawar',
-  'Quetta',
-  'Gilgit',
-  'Other',
-]
-
 export default function StudentOnboarding({ onComplete }: StudentOnboardingProps) {
   const [step, setStep] = useState(1)
   const [profile, setProfile] = useState<StudentProfile>({
     name: '',
     board: '',
-    city: '',
     subject: '',
   })
 
   const handleContinue = () => {
-    if (step < 4) {
+    if (step < 3) {
       setStep(step + 1)
     } else {
       onComplete(profile)
@@ -63,8 +47,6 @@ export default function StudentOnboarding({ onComplete }: StudentOnboardingProps
       case 2:
         return profile.board !== ''
       case 3:
-        return profile.city !== ''
-      case 4:
         return profile.subject !== ''
       default:
         return false
@@ -91,7 +73,7 @@ export default function StudentOnboarding({ onComplete }: StudentOnboardingProps
         <div className="bg-white rounded-md border border-border p-8">
           {/* Progress */}
           <div className="flex gap-1 mb-8">
-            {[1, 2, 3, 4].map((s) => (
+            {[1, 2, 3].map((s) => (
               <div
                 key={s}
                 className={`h-1.5 flex-1 rounded-full transition-colors ${
@@ -138,29 +120,8 @@ export default function StudentOnboarding({ onComplete }: StudentOnboardingProps
             </div>
           )}
 
-          {/* Step 3: City */}
+          {/* Step 3: Subject */}
           {step === 3 && (
-            <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">Where are you from? 📍</h2>
-              <p className="text-sm text-muted-foreground mb-6">Choose your city or region</p>
-              <select
-                value={profile.city}
-                onChange={(e) => setProfile({ ...profile, city: e.target.value })}
-                className="w-full px-4 py-3 rounded-md border border-border focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
-                autoFocus
-              >
-                <option value="">Select your city</option>
-                {MAJOR_CITIES.map((city) => (
-                  <option key={city} value={city}>
-                    {city}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-
-          {/* Step 4: Subject */}
-          {step === 4 && (
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-2">Favorite subject? 🎓</h2>
               <p className="text-sm text-muted-foreground mb-6">Choose where you want to focus first</p>
@@ -197,14 +158,14 @@ export default function StudentOnboarding({ onComplete }: StudentOnboardingProps
               disabled={!isStepValid()}
               className="flex-1 bg-primary text-primary-foreground py-3 rounded-md font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
             >
-              {step === 4 ? 'Get Started' : 'Continue'}
+              {step === 3 ? 'Get Started' : 'Continue'}
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
 
           {/* Step indicator */}
           <p className="text-xs text-center text-muted-foreground mt-4">
-            Step {step} of 4
+            Step {step} of 3
           </p>
         </div>
       </div>

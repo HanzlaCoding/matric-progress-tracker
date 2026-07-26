@@ -74,7 +74,7 @@ export default function App() {
                     Welcome back, {studentProfile.name}
                   </h2>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-2">
-                    {studentProfile.board} • {studentProfile.city}
+                    {studentProfile.board}
                   </p>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     Your intelligent study companion for Matriculation success. Track your {selectedSubject} progress and get personalized study schedules!
