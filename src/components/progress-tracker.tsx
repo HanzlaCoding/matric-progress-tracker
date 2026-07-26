@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { CheckCircle2, Circle, BookOpen, Trash2 } from 'lucide-react'
+import { CheckCircle2, Circle, BookOpen, Trash2, Trophy, Flame, Target, Star, PlayCircle } from 'lucide-react'
 
 interface Chapter {
   id: string
@@ -166,12 +166,12 @@ export default function ProgressTracker({ subject }: ProgressTrackerProps) {
             </div>
           </div>
           {/* Progress Labels */}
-          <div className="flex justify-between text-xs text-muted-foreground px-1">
-            <span>Start</span>
-            <span>25%</span>
-            <span>50%</span>
-            <span>75%</span>
-            <span>Done</span>
+          <div className="flex justify-between text-xs text-muted-foreground px-1 mt-1">
+            <span className="flex items-center gap-1"><PlayCircle className="w-3 h-3"/> Start</span>
+            <span className="flex items-center gap-1"><Target className="w-3 h-3"/> 25%</span>
+            <span className="flex items-center gap-1"><Star className="w-3 h-3"/> 50%</span>
+            <span className="flex items-center gap-1"><Flame className="w-3 h-3"/> 75%</span>
+            <span className="flex items-center gap-1 text-primary font-bold"><Trophy className="w-3 h-3"/> Done</span>
           </div>
         </div>
 
