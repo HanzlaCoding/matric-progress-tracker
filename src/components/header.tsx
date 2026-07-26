@@ -8,7 +8,7 @@ export default function Header() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           {/* Logo & Title */}
           <div className="flex items-center gap-3">
-            <div className="bg-gradient-to-br from-primary to-accent/90 p-2.5 rounded-xl shadow-sm text-2xl animate-bounce">
+            <div className="bg-gradient-to-br from-primary to-accent/90 p-2.5 rounded-xl shadow-sm text-2xl">
               📚
             </div>
             <div>

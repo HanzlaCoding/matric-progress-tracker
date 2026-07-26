@@ -164,12 +164,7 @@ export default function ProgressTracker({ subject }: ProgressTrackerProps) {
               style={{ width: `${progressPercentage}%` }}
             >
               {progressPercentage > 0 && (
-                <span
-                  className="text-lg animate-pulse"
-                  style={{
-                    animation: progressPercentage >= 100 ? 'bounce 0.6s infinite' : 'pulse 2s infinite',
-                  }}
-                >
+                <span className="text-lg">
                   {progressPercentage >= 100 ? '🎉' : progressPercentage >= 75 ? '🚀' : progressPercentage >= 50 ? '⭐' : progressPercentage >= 25 ? '💪' : '📚'}
                 </span>
               )}

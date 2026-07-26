@@ -94,7 +94,7 @@ export default function AIStudyAssistant({ subject, studentName }: AIStudyAssist
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center text-white z-40 animate-bounce"
+        className="fixed bottom-6 right-6 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-primary to-accent rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center text-white z-40"
         title="Study Assistant"
       >
         <MessageCircle className="w-6 h-6" />
