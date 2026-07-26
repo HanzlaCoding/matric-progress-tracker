@@ -53,33 +53,70 @@ export default function AIStudyAssistant({ subject, studentName }: AIStudyAssist
     setIsLoading(true)
 
     try {
-      // Call API to get AI response
-      const response = await fetch('/api/study-assistant', {
+      // Get API Key from Vite environment variables
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY
+
+      if (!apiKey) {
+        throw new Error('VITE_GEMINI_API_KEY is missing in your .env file.')
+      }
+
+      // Prepare the system prompt based on the subject
+      const SUBJECT_GUIDES: Record<string, string> = {
+        Physics: 'Explain concepts using formulas, real-world examples, and include step-by-step problem solving.',
+        Math: 'Guide through mathematical proofs, algebraic manipulations, and trigonometric identities.',
+        Chemistry: 'Explain chemical reactions, atomic structure, bonding, and stoichiometry.',
+        Computer: 'Cover programming concepts, data structures, algorithms, and databases.',
+        English: 'Help with grammar, vocabulary, essay writing, and comprehension.',
+        Urdu: 'Explain Urdu grammar, literature, poetry, and writing skills.',
+      }
+
+      const subjectGuide = SUBJECT_GUIDES[subject] || 'Provide comprehensive, educational responses.'
+      
+      const systemPrompt = `You are a highly knowledgeable and encouraging Pakistani matriculation ${subject} tutor. Your role is to help ${studentName} understand ${subject} concepts, solve problems, and prepare for exams.
+Focus: ${subjectGuide}
+- Provide clear, step-by-step explanations
+- Keep responses concise but comprehensive (100-200 words ideal)
+- Be encouraging and supportive`
+
+      // Call Google Gemini REST API directly
+      const response = await fetch(\`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=\${apiKey}\`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          message: input,
-          subject,
-          studentName,
-          conversationHistory: messages,
+          systemInstruction: {
+            parts: [{ text: systemPrompt }]
+          },
+          contents: [
+            ...messages.map(m => ({
+              role: m.sender === 'user' ? 'user' : 'model',
+              parts: [{ text: m.text }]
+            })),
+            { role: 'user', parts: [{ text: input }] }
+          ]
         }),
       })
 
       const data = await response.json()
 
+      if (!response.ok) {
+        throw new Error(data.error?.message || 'Failed to fetch from Gemini')
+      }
+
+      const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || 'I could not generate a response.'
+
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: data.response || 'I could not generate a response. Please try again.',
+        text: aiText,
         sender: 'assistant',
         timestamp: new Date(),
       }
 
       setMessages((prev) => [...prev, assistantMessage])
-    } catch (error) {
+    } catch (error: any) {
       console.error('[v0] Error:', error)
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: 'Sorry, I encountered an error. Please try again later.',
+        text: error.message || 'Sorry, I encountered an error. Please try again later.',
         sender: 'assistant',
         timestamp: new Date(),
       }
