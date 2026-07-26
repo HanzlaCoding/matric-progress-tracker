@@ -43,11 +43,11 @@ Key Guidelines:
 Remember: You're helping a Pakistani matriculation student prepare for their board exams in ${subject}.`
 
     const response = await generateText({
-      model: google('gemini-1.5-flash'),
+      model: google('gemini-3-flash-preview'),
       system: systemPrompt,
       prompt: message,
       temperature: 0.7,
-      maxTokens: 500,
+      maxOutputTokens: 500,
     })
 
     return res.status(200).json({
