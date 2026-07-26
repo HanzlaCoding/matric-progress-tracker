@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronRight, GraduationCap } from 'lucide-react'
+import { ChevronRight, BookOpen } from 'lucide-react'
 
 interface StudentProfile {
   name: string
