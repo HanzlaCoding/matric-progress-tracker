@@ -19,8 +19,8 @@ export default function ExamCountdown() {
     const calculateTimeLeft = () => {
       // Pakistan Matriculation 2025 dates - Punjab boards typically start in early March
       // 10th grade: March 4, 2025 | 9th grade: March 25, 2025
-      // Using March 4, 2025 as the countdown target
-      const examDate = new Date(2025, 2, 4).getTime() // March 4, 2025
+      // Using March 15, 2027 as the countdown target
+      const examDate = new Date(2027, 2, 15).getTime() // March 15, 2027
       const now = new Date().getTime()
       const difference = examDate - now
 
@@ -34,7 +34,7 @@ export default function ExamCountdown() {
         setExamInfo('Punjab Board - 10th Grade')
       } else {
         // If March exam has passed, show June exams
-        const juneDate = new Date(2025, 5, 2).getTime() // June 2, 2025
+        const juneDate = new Date(2027, 5, 2).getTime() // June 2, 2027
         const juneDifference = juneDate - now
         if (juneDifference > 0) {
           setTimeLeft({
