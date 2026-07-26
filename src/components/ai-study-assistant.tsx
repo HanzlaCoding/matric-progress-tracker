@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Send, MessageCircle, X, Loader } from 'lucide-react'
+import { MessageCircle, X, Send, Loader2 } from 'lucide-react'
+import { GoogleGenAI } from '@google/genai'
 
 interface Message {
   id: string
@@ -60,6 +61,9 @@ export default function AIStudyAssistant({ subject, studentName }: AIStudyAssist
         throw new Error('VITE_GEMINI_API_KEY is missing in your .env file.')
       }
 
+      // Initialize the official @google/genai SDK
+      const ai = new GoogleGenAI({ apiKey })
+
       // Prepare the system prompt based on the subject
       const SUBJECT_GUIDES: Record<string, string> = {
         Physics: 'Explain concepts using formulas, real-world examples, and include step-by-step problem solving.',
@@ -78,31 +82,25 @@ Focus: ${subjectGuide}
 - Keep responses concise but comprehensive (100-200 words ideal)
 - Be encouraging and supportive`
 
-      // Call Google Gemini REST API directly
-      const response = await fetch(\`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=\${apiKey}\`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          systemInstruction: {
-            parts: [{ text: systemPrompt }]
-          },
-          contents: [
-            ...messages.map(m => ({
-              role: m.sender === 'user' ? 'user' : 'model',
-              parts: [{ text: m.text }]
-            })),
-            { role: 'user', parts: [{ text: input }] }
-          ]
-        }),
+      // Format previous messages for the model
+      const contents = [
+        ...messages.map(m => ({
+          role: m.sender === 'user' ? 'user' : 'model',
+          parts: [{ text: m.text }]
+        })),
+        { role: 'user', parts: [{ text: input }] }
+      ]
+
+      // Call the latest Gemini 2.0 Flash model using the official SDK
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.0-flash',
+        contents: contents,
+        config: {
+          systemInstruction: systemPrompt,
+        }
       })
 
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error?.message || 'Failed to fetch from Gemini')
-      }
-
-      const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || 'I could not generate a response.'
+      const aiText = response.text || 'I could not generate a response.'
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -178,7 +176,7 @@ Focus: ${subjectGuide}
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-primary/5 text-foreground px-4 py-2 rounded-lg text-sm flex items-center gap-2">
-                  <Loader className="w-4 h-4 animate-spin" />
+                  <Loader2 className="w-4 h-4 animate-spin" />
                   Thinking...
                 </div>
               </div>
