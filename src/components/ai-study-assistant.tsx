@@ -94,7 +94,7 @@ export default function AIStudyAssistant({ subject, studentName }: AIStudyAssist
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center text-primary-foreground z-40"
+        className="fixed bottom-6 right-6 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-center text-primary-foreground z-40"
         title="Study Assistant"
       >
         <MessageCircle className="w-6 h-6" />
@@ -102,7 +102,7 @@ export default function AIStudyAssistant({ subject, studentName }: AIStudyAssist
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-96 max-w-[90vw] bg-card rounded-md shadow-lg border border-border flex flex-col z-40 max-h-96 overflow-hidden">
+        <div className="fixed bottom-24 right-6 w-96 max-w-[90vw] bg-card rounded-xl shadow-2xl border border-border flex flex-col z-40 max-h-96 overflow-hidden">
           {/* Header */}
           <div className="bg-primary text-primary-foreground p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">

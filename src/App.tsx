@@ -65,12 +65,12 @@ export default function App() {
 
       <main className="w-full max-w-6xl mx-auto px-3 py-4 md:py-8 md:px-6">
         <div className="mb-4 md:mb-8">
-          <div className="bg-card rounded-md p-5 md:p-6 border border-border">
+          <div className="bg-card rounded-xl p-6 md:p-8 border border-border shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-start gap-3 justify-between">
               <div className="flex items-start gap-3 flex-1">
                 <Zap className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h2 className="text-xl font-bold text-foreground mb-1">
+                  <h2 className="text-2xl md:text-3xl font-extrabold text-foreground mb-1 tracking-tight">
                     Welcome back, {studentProfile.name}
                   </h2>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-2">
@@ -94,8 +94,8 @@ export default function App() {
           </div>
         </div>
 
-        <div className="mb-4 md:mb-6">
-          <div className="bg-card rounded-md p-4 md:p-5 border border-border">
+        <div className="mb-6 md:mb-8">
+          <div className="bg-card rounded-xl p-5 md:p-6 border border-border shadow-sm hover:shadow-md transition-shadow">
             <SubjectSelector onSelectSubject={handleSubjectChange} selectedSubject={selectedSubject} />
           </div>
         </div>
@@ -110,22 +110,22 @@ export default function App() {
           </div>
         </div>
 
-        <div className="mt-8 md:mt-10 hidden md:grid md:grid-cols-3 gap-4">
-          <div className="bg-card rounded-md p-4 border border-border">
-            <h3 className="font-semibold text-foreground mb-2 text-sm">Study Smart</h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">
+        <div className="mt-8 md:mt-12 hidden md:grid md:grid-cols-3 gap-6">
+          <div className="bg-card rounded-xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow hover:-translate-y-1">
+            <h3 className="font-extrabold text-foreground mb-2 text-base">Study Smart</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
               Use our AI-generated schedule to optimize your study time and maximize retention.
             </p>
           </div>
-          <div className="bg-card rounded-md p-4 border border-border">
-            <h3 className="font-semibold text-foreground mb-2 text-sm">Track Progress</h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">
+          <div className="bg-card rounded-xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow hover:-translate-y-1">
+            <h3 className="font-extrabold text-foreground mb-2 text-base">Track Progress</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
               Check off chapters as you complete them and watch your progress bar grow.
             </p>
           </div>
-          <div className="bg-card rounded-md p-4 border border-border">
-            <h3 className="font-semibold text-foreground mb-2 text-sm">Stay Focused</h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">
+          <div className="bg-card rounded-xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow hover:-translate-y-1">
+            <h3 className="font-extrabold text-foreground mb-2 text-base">Stay Focused</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
               With 6 subjects and personalized schedules, stay on track for exam success.
             </p>
           </div>

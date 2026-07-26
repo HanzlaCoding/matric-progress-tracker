@@ -17,7 +17,7 @@ export default function SubjectSelector({ onSelectSubject, selectedSubject }: Su
       <select
         value={selectedSubject}
         onChange={(e) => onSelectSubject(e.target.value)}
-        className="w-full px-4 py-2.5 rounded-lg bg-white text-foreground border border-border focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all font-medium"
+        className="w-full px-4 py-2.5 rounded-lg bg-white text-foreground border border-border focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all font-medium hover:shadow-sm cursor-pointer"
       >
         {SUBJECTS.map((subject) => (
           <option key={subject} value={subject}>

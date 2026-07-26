@@ -158,9 +158,9 @@ export default function ProgressTracker({ subject }: ProgressTrackerProps) {
             </span>
             <span className="text-sm font-bold text-primary">{progressPercentage}%</span>
           </div>
-          <div className="w-full bg-muted rounded-full h-3 overflow-hidden relative">
+          <div className="w-full bg-slate-200 rounded-full h-4 md:h-5 overflow-hidden relative shadow-inner">
             <div
-              className="h-full bg-primary transition-all duration-500 rounded-full flex items-center justify-end pr-1"
+              className="h-full bg-primary transition-all duration-700 ease-out rounded-full flex items-center justify-end pr-1"
               style={{ width: `${progressPercentage}%` }}
             >
             </div>
