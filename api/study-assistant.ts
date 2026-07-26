@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     const { message, subject, studentName } = req.body
 
     const google = createGoogleGenerativeAI({
-      apiKey: process.env.GEMINI_API_KEY,
+      apiKey: import.meta.process.env.VITE_GEMINI_API_KEY,
     })
 
     const SUBJECT_GUIDES = {
