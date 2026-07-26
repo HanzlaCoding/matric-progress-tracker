@@ -94,7 +94,7 @@ export default function AIStudyAssistant({ subject, studentName }: AIStudyAssist
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-primary to-accent rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center text-white z-40"
+        className="fixed bottom-6 right-6 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center text-primary-foreground z-40"
         title="Study Assistant"
       >
         <MessageCircle className="w-6 h-6" />
@@ -102,13 +102,13 @@ export default function AIStudyAssistant({ subject, studentName }: AIStudyAssist
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-96 max-w-[90vw] bg-white rounded-2xl shadow-2xl border border-border flex flex-col z-40 max-h-96">
+        <div className="fixed bottom-24 right-6 w-96 max-w-[90vw] bg-card rounded-md shadow-lg border border-border flex flex-col z-40 max-h-96 overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-primary to-accent/90 text-white p-4 rounded-t-2xl flex items-center justify-between">
+          <div className="bg-primary text-primary-foreground p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <MessageCircle className="w-5 h-5" />
               <div>
-                <h3 className="font-semibold">{subject} Assistant 📚</h3>
+                <h3 className="font-semibold">{subject} Assistant</h3>
                 <p className="text-xs opacity-90">Ask anything about {subject}</p>
               </div>
             </div>
@@ -168,7 +168,7 @@ export default function AIStudyAssistant({ subject, studentName }: AIStudyAssist
             <button
               onClick={handleSendMessage}
               disabled={isLoading || !input.trim()}
-              className="bg-gradient-to-r from-primary to-accent text-white p-2 rounded-lg hover:shadow-lg transition-all disabled:opacity-50"
+              className="bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/90 transition-all disabled:opacity-50"
             >
               <Send className="w-5 h-5" />
             </button>

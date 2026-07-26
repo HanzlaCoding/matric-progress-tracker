@@ -135,7 +135,7 @@ export default function ProgressTracker({ subject }: ProgressTrackerProps) {
 
   return (
     <div className="w-full space-y-4">
-      <div className="bg-card rounded-xl p-5 border border-border shadow-sm">
+      <div className="bg-card rounded-md p-5 border border-border">
         <div className="flex items-center justify-between mb-5">
           <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
             <BookOpen className="w-5 h-5 text-primary" />
@@ -160,23 +160,18 @@ export default function ProgressTracker({ subject }: ProgressTrackerProps) {
           </div>
           <div className="w-full bg-muted rounded-full h-3 overflow-hidden relative">
             <div
-              className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500 rounded-full flex items-center justify-end pr-1"
+              className="h-full bg-primary transition-all duration-500 rounded-full flex items-center justify-end pr-1"
               style={{ width: `${progressPercentage}%` }}
             >
-              {progressPercentage > 0 && (
-                <span className="text-lg">
-                  {progressPercentage >= 100 ? '🎉' : progressPercentage >= 75 ? '🚀' : progressPercentage >= 50 ? '⭐' : progressPercentage >= 25 ? '💪' : '📚'}
-                </span>
-              )}
             </div>
           </div>
           {/* Progress Labels */}
           <div className="flex justify-between text-xs text-muted-foreground px-1">
-            <span>📚 Start</span>
-            <span>💪 25%</span>
-            <span>⭐ 50%</span>
-            <span>🚀 75%</span>
-            <span>🎉 Done!</span>
+            <span>Start</span>
+            <span>25%</span>
+            <span>50%</span>
+            <span>75%</span>
+            <span>Done</span>
           </div>
         </div>
 

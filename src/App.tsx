@@ -5,7 +5,7 @@ import StudyPlanner from '@/components/study-planner'
 import ProgressTracker from '@/components/progress-tracker'
 import StudentOnboarding from '@/components/student-onboarding'
 import AIStudyAssistant from '@/components/ai-study-assistant'
-import { Zap } from 'lucide-react'
+import { Zap, BookOpen } from 'lucide-react'
 
 interface StudentProfile {
   name: string
@@ -48,7 +48,7 @@ export default function App() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <div className="text-4xl mb-4">📚</div>
+          <BookOpen className="w-12 h-12 mx-auto mb-4 text-primary" />
           <p className="text-muted-foreground">Loading MatricPrep...</p>
         </div>
       </div>
@@ -65,13 +65,13 @@ export default function App() {
 
       <main className="w-full max-w-6xl mx-auto px-3 py-4 md:py-8 md:px-6">
         <div className="mb-4 md:mb-8">
-          <div className="bg-gradient-to-br from-primary/5 via-accent/3 to-transparent rounded-xl p-5 md:p-6 border border-primary/10 shadow-sm">
+          <div className="bg-card rounded-md p-5 md:p-6 border border-border">
             <div className="flex items-start gap-3 justify-between">
               <div className="flex items-start gap-3 flex-1">
                 <Zap className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-1" />
                 <div>
                   <h2 className="text-xl font-bold text-foreground mb-1">
-                    Welcome back, {studentProfile.name}! 👋
+                    Welcome back, {studentProfile.name}
                   </h2>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-2">
                     {studentProfile.board} • {studentProfile.city}
@@ -95,7 +95,7 @@ export default function App() {
         </div>
 
         <div className="mb-4 md:mb-6">
-          <div className="bg-card rounded-xl p-4 md:p-5 border border-border shadow-sm">
+          <div className="bg-card rounded-md p-4 md:p-5 border border-border">
             <SubjectSelector onSelectSubject={handleSubjectChange} selectedSubject={selectedSubject} />
           </div>
         </div>
@@ -111,19 +111,19 @@ export default function App() {
         </div>
 
         <div className="mt-8 md:mt-10 hidden md:grid md:grid-cols-3 gap-4">
-          <div className="bg-gradient-to-br from-primary/5 to-primary/2 rounded-xl p-4 border border-primary/10 hover:shadow-md transition-all">
+          <div className="bg-card rounded-md p-4 border border-border">
             <h3 className="font-semibold text-foreground mb-2 text-sm">Study Smart</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
               Use our AI-generated schedule to optimize your study time and maximize retention.
             </p>
           </div>
-          <div className="bg-gradient-to-br from-accent/5 to-accent/2 rounded-xl p-4 border border-accent/10 hover:shadow-md transition-all">
+          <div className="bg-card rounded-md p-4 border border-border">
             <h3 className="font-semibold text-foreground mb-2 text-sm">Track Progress</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
               Check off chapters as you complete them and watch your progress bar grow.
             </p>
           </div>
-          <div className="bg-gradient-to-br from-primary/3 to-accent/3 rounded-xl p-4 border border-primary/5 hover:shadow-md transition-all">
+          <div className="bg-card rounded-md p-4 border border-border">
             <h3 className="font-semibold text-foreground mb-2 text-sm">Stay Focused</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
               With 6 subjects and personalized schedules, stay on track for exam success.
